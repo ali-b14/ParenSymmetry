@@ -1,19 +1,48 @@
 package src.main.java;
 
+import java.io.*;
+import java.util.Arrays;
+import java.util.Scanner;
+
 public class ParenSymmetry {
 
 
-    private Boolean isBalanced(String s) {
+    public Boolean isBalanced(String stringToTest) {
         // implement this method
-        return null;
+        int openBraceCounter = 0;
+        int closedBraceCounter = 0;
+        char openBrace = '(';
+        char closingBrace= ')';
+
+        char[] chararray = stringToTest.toCharArray();
+
+        for (int i = 0; i < chararray.length; i++){
+            if (chararray[i] == openBrace){
+                openBraceCounter++;
+
+            } else if (chararray[i] == closingBrace) {
+                closedBraceCounter++;
+            }
+
+        }if (openBraceCounter == closedBraceCounter){
+            return true;
+        }else{
+        return false;
+        }
     }
 
-    private void checkFile(String filename) {
-        // open file named filename
-
+    private void checkFile(String filename) throws IOException {
         // for each line in the file
-            // read the line
-            // print whether or not the line's parenthesis are balanced
+        // read the line
+        // print whether or not the line's parenthesis are balanced
+
+       BufferedReader br = new BufferedReader(new FileReader(filename));
+       String line;
+       while((line = br.readLine()) != null){
+           isBalanced(line);
+           System.out.println(line);
+       }
+       br.close();
 
         // CLOSE the file
     }
